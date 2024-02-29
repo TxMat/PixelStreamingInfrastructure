@@ -11,7 +11,7 @@ document.body.onload = function() {
 	// Logger.SetLoggerVerbosity(10);
 
 	// Create a config object
-	const config = new Config({ useUrlParams: true });
+	const config = new Config({ useUrlParams: false });
 
 	// Create a Native DOM delegate instance that implements the Delegate interface class
 	const stream = new PixelStreaming(config);

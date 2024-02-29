@@ -95,7 +95,6 @@ export class StatsPanel {
             statistics.appendChild(this.statisticsContainer);
 
             controlStats.appendChild(this.latencyTest.rootElement);
-            controlStats.appendChild(this.dataChannelLatencyTest.rootElement);
         }
         return this._statsContentElement;
     }

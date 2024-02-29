@@ -318,8 +318,8 @@ export class Config {
             Flags.IsQualityController,
             new SettingFlag(
                 Flags.IsQualityController,
-                'Is quality controller?',
-                'True if this peer controls stream quality',
+                'Enable Advanced Mode',
+                'Enable advanced mode for controlling video quality.',
                 true,
                 useUrlParams
             )
@@ -340,8 +340,8 @@ export class Config {
             Flags.ForceTURN,
             new SettingFlag(
                 Flags.ForceTURN,
-                'Force TURN',
-                'Only generate TURN/Relayed ICE candidates.',
+                'Restricted Connectivity Mode',
+                'Force the use of a TURN server for WebRTC connectivity. This is useful for restricted network environments.',
                 false,
                 useUrlParams
             )
@@ -353,7 +353,7 @@ export class Config {
                 Flags.AFKDetection,
                 'AFK if idle',
                 'Timeout the experience if user is AFK for a period.',
-                false,
+                true,
                 useUrlParams
             )
         );
@@ -471,8 +471,8 @@ export class Config {
                 'AFK timeout',
                 'The time (in seconds) it takes for the application to time out if AFK timeout is enabled.',
                 0 /*min*/,
-                600 /*max*/,
-                120 /*value*/,
+                500 /*max*/,
+                500 /*value*/,
                 useUrlParams
             )
         );
@@ -484,7 +484,7 @@ export class Config {
                 'Max Reconnects',
                 'Maximum number of reconnects the application will attempt when a streamer disconnects.',
                 0 /*min*/,
-                999 /*max*/,
+                5 /*max*/,
                 3 /*value*/,
                 useUrlParams
             )
@@ -494,11 +494,11 @@ export class Config {
             NumericParameters.MinQP,
             new SettingNumber(
                 NumericParameters.MinQP,
-                'Min QP',
-                'The lower bound for the quantization parameter (QP) of the encoder. 0 = Best quality, 51 = worst quality.',
-                0 /*min*/,
+                'Max Quality Number',
+                'Keep this value at the lowest for better quality. increase it for better performance.',
+                22 /*min*/,
                 51 /*max*/,
-                0 /*value*/,
+                22 /*value*/,
                 useUrlParams
             )
         );
@@ -507,9 +507,9 @@ export class Config {
             NumericParameters.MaxQP,
             new SettingNumber(
                 NumericParameters.MaxQP,
-                'Max QP',
-                'The upper bound for the quantization parameter (QP) of the encoder. 0 = Best quality, 51 = worst quality.',
-                0 /*min*/,
+                'Min Quality Number',
+                'To limit how low the quality can go, decrease this value. Increase it to allow for lower quality.',
+                22 /*min*/,
                 51 /*max*/,
                 51 /*value*/,
                 useUrlParams
@@ -523,8 +523,8 @@ export class Config {
                 'Max FPS',
                 'The maximum FPS that WebRTC will try to transmit frames at.',
                 1 /*min*/,
-                999 /*max*/,
-                60 /*value*/,
+                30 /*max*/,
+                30 /*value*/,
                 useUrlParams
             )
         );

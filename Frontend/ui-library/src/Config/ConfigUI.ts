@@ -324,15 +324,7 @@ export class ConfigUI {
         // make settings show up in DOM
         this.addSettingFlag(
             psSettingsSection,
-            this.flagsUi.get(Flags.AutoConnect)
-        );
-        this.addSettingFlag(
-            psSettingsSection,
             this.flagsUi.get(Flags.UseMic)
-        );
-        this.addSettingFlag(
-            psSettingsSection,
-            this.flagsUi.get(Flags.IsQualityController)
         );
         this.addSettingFlag(
             psSettingsSection,
@@ -341,18 +333,6 @@ export class ConfigUI {
         this.addSettingFlag(
             psSettingsSection,
             this.flagsUi.get(Flags.ForceTURN)
-        );
-        this.addSettingFlag(
-            psSettingsSection,
-            this.flagsUi.get(Flags.SuppressBrowserKeys)
-        );
-        this.addSettingFlag(
-            psSettingsSection,
-            this.flagsUi.get(Flags.AFKDetection)
-        );
-        this.addSettingFlag(
-            psSettingsSection,
-            this.flagsUi.get(Flags.WaitForStreamer)
         );
 
         /* Setup all view/ui related settings under this section */
@@ -363,11 +343,6 @@ export class ConfigUI {
         this.addSettingFlag(
             viewSettingsSection,
             this.flagsUi.get(Flags.MatchViewportResolution)
-        );
-
-        this.addSettingFlag(
-            viewSettingsSection,
-            this.flagsUi.get(Flags.HoveringMouseMode)
         );
 
         this.addSettingFlag(viewSettingsSection, this.flagsUi.get(LightMode));
@@ -418,33 +393,9 @@ export class ConfigUI {
             this.numericParametersUi.get(NumericParameters.MaxQP)
         );
 
-        const preferredCodecOption = this.optionParametersUi.get(
-            OptionParameters.PreferredCodec
-        );
-        this.addSettingOption(
-            AdvancedSettingsSection,
-            this.optionParametersUi.get(OptionParameters.PreferredCodec)
-        );
-        if (
-            preferredCodecOption &&
-            [...preferredCodecOption.selector.options]
-                .map((o) => o.value)
-                .includes('Only available on Chrome')
-        ) {
-            preferredCodecOption.disable();
-        }
-
         this.addSettingNumeric(
             AdvancedSettingsSection,
             this.numericParametersUi.get(NumericParameters.WebRTCFPS)
-        );
-        this.addSettingNumeric(
-            AdvancedSettingsSection,
-            this.numericParametersUi.get(NumericParameters.WebRTCMinBitrate)
-        );
-        this.addSettingNumeric(
-            AdvancedSettingsSection,
-            this.numericParametersUi.get(NumericParameters.WebRTCMaxBitrate)
         );
     }
 

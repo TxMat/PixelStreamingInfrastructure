@@ -239,7 +239,7 @@ export class PixelStreamingApplicationStyle {
             bottom: '0',
             right: '0',
             height: '100%',
-            minWidth: '20vw',
+            minWidth: '25vw',
             maxWidth: '90vw',
             transform: 'translateX(100%)',
             transition: '.3s ease-out',

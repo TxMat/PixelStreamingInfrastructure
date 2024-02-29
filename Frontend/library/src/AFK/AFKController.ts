@@ -12,7 +12,7 @@ import {
 
 export class AFKController {
     // time out logic details
-    closeTimeout = 10;
+    closeTimeout = 30; // bumped to 30 seconds
     active = false;
     countdownActive = false;
     warnTimer: ReturnType<typeof setTimeout> = undefined;
