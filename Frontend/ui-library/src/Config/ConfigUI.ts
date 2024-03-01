@@ -386,11 +386,11 @@ export class ConfigUI {
 
         this.addSettingNumeric(
             AdvancedSettingsSection,
-            this.numericParametersUi.get(NumericParameters.MinQP)
+            this.numericParametersUi.get(NumericParameters.MaxQP)
         );
         this.addSettingNumeric(
             AdvancedSettingsSection,
-            this.numericParametersUi.get(NumericParameters.MaxQP)
+            this.numericParametersUi.get(NumericParameters.MinQP)
         );
 
         this.addSettingNumeric(

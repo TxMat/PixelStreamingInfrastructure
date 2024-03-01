@@ -341,7 +341,7 @@ export class Config {
             new SettingFlag(
                 Flags.ForceTURN,
                 'Restricted Connectivity Mode',
-                'Force the use of a TURN server for WebRTC connectivity. This is useful for restricted network environments.',
+                'Use this if you encounter connectivity issues or are behind a restrictive firewall like a corporate network.',
                 false,
                 useUrlParams
             )
