@@ -44,9 +44,9 @@ export class VideoQpIndicator {
             // set colors to not connected initially
             this.updateQpTooltip(-1);
 
-            this._rootElement.style.transition = 'bottom 0.5s ease';
-
-            document.addEventListener('fullscreenchange', this.handleFullscreenChange.bind(this));
+            // this._rootElement.style.transition = 'bottom 0.5s ease';
+            //
+            // document.addEventListener('fullscreenchange', this.handleFullscreenChange.bind(this));
         }
         return this._rootElement;
     }
@@ -60,10 +60,10 @@ export class VideoQpIndicator {
 
         if (isInFullscreen) {
             // Hide the QP indicator when in fullscreen mode
-            this._rootElement.style.bottom = '-10%';
+            this._rootElement.style.right = '110%';
         } else {
                 // Show the QP indicator when not in fullscreen mode
-                this._rootElement.style.bottom = '8%';
+                this._rootElement.style.right = '1%';
             }
     }
 

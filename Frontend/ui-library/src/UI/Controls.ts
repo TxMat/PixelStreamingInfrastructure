@@ -6,6 +6,7 @@ import { StatsIcon } from './StatsIcon';
 import { XRIcon } from './XRIcon';
 import { WebXRController } from '@epicgames-ps/lib-pixelstreamingfrontend-ue5.3';
 import { UIElementConfig, UIElementCreationMode } from '../UI/UIConfigurationTypes'
+import {VideoQpIndicator} from "./VideoQpIndicator";
 
 /**
  * Configures how UI elements to control the stream are created. 
@@ -33,6 +34,7 @@ export class Controls {
     fullscreenIcon: FullScreenIcon;
     settingsIcon: SettingsIcon;
     xrIcon: XRIcon;
+    QPIndicator: VideoQpIndicator;
 
     _rootElement: HTMLElement;
 
@@ -52,6 +54,8 @@ export class Controls {
         if (!config || shouldCreateButton(config.xrIconType)){
             this.xrIcon = new XRIcon();
         }
+        this.QPIndicator = new VideoQpIndicator();
+
     }
 
     /**
@@ -78,9 +82,10 @@ export class Controls {
                     }
                 });
             }
+            this._rootElement.appendChild(this.QPIndicator.rootElement);
 
             // Add CSS styles for transition
-            this._rootElement.style.transition = 'left 0.5s ease';
+            this._rootElement.style.transition = 'right 0.5s ease';
 
             // Add event listener for fullscreen change
             document.addEventListener('fullscreenchange', this.handleFullscreenChange.bind(this));
@@ -97,10 +102,10 @@ export class Controls {
 
         if (isInFullscreen) {
             // Hide the controls when in fullscreen mode
-            this._rootElement.style.left = '-10%';
+            this._rootElement.style.right = '-10%';
         } else {
             // Show the controls when not in fullscreen mode
-            this._rootElement.style.left = '2%';
+            this._rootElement.style.right = '1%';
         }
     }
 }

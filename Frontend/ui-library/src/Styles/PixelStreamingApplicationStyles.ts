@@ -89,8 +89,8 @@ export class PixelStreamingApplicationStyle {
             position: 'absolute',
             top: '0',
             transform: 'translateY(25%)',
-            left: '125%',
-            zIndex: '20'
+            right: '125%',
+            zIndex: '9'
         },
         '.UiTool:hover .tooltiptext': {
             visibility: 'visible',
@@ -100,16 +100,17 @@ export class PixelStreamingApplicationStyle {
             top: '125%',
             transform: 'translateX(-25%)',
             left: '0',
+            right: 'auto',
             zIndex: '20',
             padding: '5px 10px'
         },
         '#connection': {
-            position: 'absolute',
-            bottom: '8%',
-            left: '5%',
+            // position: 'absolute',
+            // top: '15em',
+            // right: '1.9em',
             fontFamily: "'Michroma', sans-serif",
-            height: '3rem',
-            width: '3rem',
+            height: '2em',
+            width: '2em',
             pointerEvents: 'all'
         },
         '#settings-panel .tooltiptext': {
@@ -117,6 +118,7 @@ export class PixelStreamingApplicationStyle {
             top: '125%',
             transform: 'translateX(-50%)',
             left: '0',
+            right: 'auto',
             zIndex: '20',
             padding: '5px 10px',
             border: '3px solid var(--color3)',
@@ -150,8 +152,8 @@ export class PixelStreamingApplicationStyle {
         },
         '#controls': {
             position: 'absolute',
-            top: '3%',
-            left: '2%',
+            top: '8%',
+            right: '1%',
             fontFamily: "'Michroma', sans-serif",
             pointerEvents: 'all',
             display: 'block'
@@ -248,6 +250,7 @@ export class PixelStreamingApplicationStyle {
             '-webkit-backdrop-filter': 'blur(10px)',
             overflowY: 'auto',
             overflowX: 'hidden',
+            zIndex: '10',
             backgroundColor: 'var(--color0)'
         },
         '.panel-wrap-visible': {
