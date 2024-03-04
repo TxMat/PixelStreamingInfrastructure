@@ -189,21 +189,10 @@ export class VideoQpIndicator {
      * @param speed - Set the speed of the blink, higher numbers make the status light blink faster.
      */
     blinkVideoQualityStatus(speed: number) {
-        let iteration = speed;
-        let opacity = 1;
-        const tickID = setInterval(() => {
-            opacity -= 0.1;
-            this.qualityText.style.opacity = String(
-                Math.abs((opacity - 0.5) * 2)
-            );
-            if (opacity <= 0.1) {
-                if (--iteration == 0) {
-                    clearInterval(tickID);
-                } else {
-                    opacity = 1;
-                }
-            }
-        }, 100 / speed);
+        this.dot.style.animation = `blink ${speed}s infinite`;
+        this.inner.style.animation = `blink ${speed}s infinite`;
+        this.middle.style.animation = `blink ${speed}s infinite`;
+        this.outer.style.animation = `blink ${speed}s infinite`;
     }
 
     /**
@@ -213,22 +202,25 @@ export class VideoQpIndicator {
     updateQpTooltip(QP: number) {
         this.videoEncoderAvgQP = QP;
         if (QP > this.redQP) {
+            this._rootElement.style.display = 'block';
             this.color = 'red';
-            this.blinkVideoQualityStatus(2);
+            //this.blinkVideoQualityStatus(2);
             this.statsText = `<div style="color: ${this.color}">Poor encoding quality</div>`;
             this.outer.setAttributeNS(null, 'fill', '#3c3b40');
             this.middle.setAttributeNS(null, 'fill', '#3c3b40');
             this.inner.setAttributeNS(null, 'fill', this.color);
             this.dot.setAttributeNS(null, 'fill', this.color);
         } else if (QP > this.orangeQP) {
+            this._rootElement.style.display = 'block';
             this.color = 'orange';
-            this.blinkVideoQualityStatus(1);
+            //this.blinkVideoQualityStatus(1);
             this.statsText = `<div style="color: ${this.color}">Blocky encoding quality</div>`;
             this.outer.setAttributeNS(null, 'fill', '#3c3b40');
             this.middle.setAttributeNS(null, 'fill', this.color);
             this.inner.setAttributeNS(null, 'fill', this.color);
             this.dot.setAttributeNS(null, 'fill', this.color);
         } else if (QP <= 0) {
+            this._rootElement.style.display = 'none';
             this.color = '#b0b0b0';
             this.outer.setAttributeNS(null, 'fill', '#3c3b40');
             this.middle.setAttributeNS(null, 'fill', '#3c3b40');
@@ -236,13 +228,14 @@ export class VideoQpIndicator {
             this.dot.setAttributeNS(null, 'fill', '#3c3b40');
             this.statsText = `<div style="color: ${this.color}">Not connected</div>`;
         } else {
-            this.color = 'lime';
-            this.qualityStatus.style.opacity = '.9';
-            this.statsText = `<div style="color: ${this.color}">Clear encoding quality</div>`;
-            this.outer.setAttributeNS(null, 'fill', this.color);
-            this.middle.setAttributeNS(null, 'fill', this.color);
-            this.inner.setAttributeNS(null, 'fill', this.color);
-            this.dot.setAttributeNS(null, 'fill', this.color);
+            this._rootElement.style.display = 'none';
+            // this.color = 'lime';
+            // this.qualityStatus.style.opacity = '.9';
+            // this.statsText = `<div style="color: ${this.color}">Clear encoding quality</div>`;
+            // this.outer.setAttributeNS(null, 'fill', this.color);
+            // this.middle.setAttributeNS(null, 'fill', this.color);
+            // this.inner.setAttributeNS(null, 'fill', this.color);
+            // this.dot.setAttributeNS(null, 'fill', this.color);
         }
         this.qualityText.innerHTML = this.statsText;
     }

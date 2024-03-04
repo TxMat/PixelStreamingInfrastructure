@@ -125,11 +125,11 @@ export class Application {
             this.configureSettings();
         }
         
-        if (!options.videoQpIndicatorConfig || !options.videoQpIndicatorConfig.disableIndicator) {
-            // Add the video stream QP indicator
-            this.videoQpIndicator = new VideoQpIndicator();
-            this.uiFeaturesElement.appendChild(this.videoQpIndicator.rootElement);
-        }
+        // if (!options.videoQpIndicatorConfig || !options.videoQpIndicatorConfig.disableIndicator) {
+        //     // Add the video stream QP indicator
+        //     this.videoQpIndicator = new VideoQpIndicator();
+        //     this.uiFeaturesElement.appendChild(this.videoQpIndicator.rootElement);
+        // }
 
         this.createButtons();
 
@@ -185,8 +185,8 @@ export class Application {
             xrIconType: this._options.xrControlsConfig
         }
         // Setup controls
-        const controls = new Controls(controlsUIConfig);
-        this.uiFeaturesElement.appendChild(controls.rootElement);
+        this.controls = new Controls(controlsUIConfig);
+        this.uiFeaturesElement.appendChild(this.controls.rootElement);
 
         // When we fullscreen we want this element to be the root
         const fullScreenButton : FullScreenIconBase | undefined = 
@@ -196,14 +196,14 @@ export class Application {
             // Either create a fullscreen class based on the external button
             ? new FullScreenIconExternal(this._options.fullScreenControlsConfig.customElement)
             // Or use the one created by the Controls initializer earlier
-            : controls.fullscreenIcon;
+            : this.controls.fullscreenIcon;
         if (fullScreenButton) {
             fullScreenButton.fullscreenElement = /iPad|iPhone|iPod/.test(navigator.userAgent) ? this.stream.videoElementParent.getElementsByTagName("video")[0] : this.rootElement;
         }
 
         // Add settings button to controls
         const settingsButton : HTMLElement | undefined = 
-            !!controls.settingsIcon ? controls.settingsIcon.rootElement : 
+            !!this.controls.settingsIcon ? this.controls.settingsIcon.rootElement :
             this._options.settingsPanelConfig.visibilityButtonConfig.customElement;
         if (!!settingsButton) settingsButton.onclick = () =>
             this.settingsClicked();
@@ -212,7 +212,7 @@ export class Application {
 
         // Add WebXR button to controls
         const xrButton : HTMLElement | undefined = 
-            !!controls.xrIcon ? controls.xrIcon.rootElement : 
+            !!this.controls.xrIcon ? this.controls.xrIcon.rootElement :
             this._options.xrControlsConfig.creationMode === UIElementCreationMode.UseCustomElement ?
             this._options.xrControlsConfig.customElement : undefined;
         if (!!xrButton) xrButton.onclick = () =>
@@ -220,7 +220,7 @@ export class Application {
 
         // setup the stats/info button
         const statsButton : HTMLElement | undefined = 
-            !!controls.statsIcon ? controls.statsIcon.rootElement : 
+            !!this.controls.statsIcon ? this.controls   .statsIcon.rootElement :
             this._options.statsPanelConfig.visibilityButtonConfig.customElement;
         if (!!statsButton) statsButton.onclick = () => this.statsClicked()
 
@@ -639,8 +639,8 @@ export class Application {
      */
     onVideoEncoderAvgQP(QP: number) {
         // Update internal QP indicator if one is present
-        if (!!this.videoQpIndicator) {
-            this.videoQpIndicator.updateQpTooltip(QP);
+        if (this.controls && this.controls.QPIndicator) {
+            this.controls.QPIndicator.updateQpTooltip(QP);
         }
     }
 

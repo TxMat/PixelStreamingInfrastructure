@@ -97,15 +97,11 @@ export class PixelStreamingApplicationStyle {
             backgroundColor: 'var(--color7)'
         },
         '#connection .tooltiptext': {
-            top: '125%',
-            transform: 'translateX(-25%)',
-            left: '0',
-            right: 'auto',
-            zIndex: '20',
-            padding: '5px 10px'
+            transform: 'translateX(0%)',
+            lineHeight: '1.5em',
         },
         '#connection': {
-            // position: 'absolute',
+            position: 'absolute',
             // top: '15em',
             // right: '1.9em',
             fontFamily: "'Michroma', sans-serif",

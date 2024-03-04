@@ -85,7 +85,7 @@ export class Controls {
             this._rootElement.appendChild(this.QPIndicator.rootElement);
 
             // Add CSS styles for transition
-            this._rootElement.style.transition = 'right 0.5s ease';
+            this._rootElement.style.transition = 'right 0.5s ease-in-out';
 
             // Add event listener for fullscreen change
             document.addEventListener('fullscreenchange', this.handleFullscreenChange.bind(this));
