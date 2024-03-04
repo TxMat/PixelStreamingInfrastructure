@@ -148,7 +148,7 @@ export class PixelStreamingApplicationStyle {
         },
         '#controls': {
             position: 'absolute',
-            top: '8%',
+            top: '9%',
             right: '1%',
             fontFamily: "'Michroma', sans-serif",
             pointerEvents: 'all',
